@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge, Chrome=1">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+		<title>WeatherAPP</title>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="weatherstyles.css" rel="stylesheet"/>
+
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.12/d3.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="weathercore.js"></script>
+
+	</head>
+	<body>
+		<div id="loading">
+
+		</div>
+		<div id="mainWindow">
+			<span style="font-size:24px">Casey's Weather App</span>
+			<div class="container-fluid">
+
+				<hr>
+				<ul class="nav nav-pills">
+					<li>
+						<a id="dissearch" class="pil" href="#" onclick="toggleView('search');">Search a Location</a>
+					</li>
+					<li>
+						<a id="disweather" class="pil" href="#" onclick="toggleView('weather');">Current Conditions</a>
+					</li>
+					<li>
+						<a id="disforecast" class="pil" href="#" onclick="toggleView('forecast');">Forecast</a>
+					</li>
+					<li>
+						<a id="dishourly" class="pil" href="#" onclick="toggleView('hourly');">Hourly Temperature</a>
+					</li>
+					<li>
+						<a id="disalerts" class="pil" href="#" onclick="toggleView('alerts');">Alerts</a>
+					</li>
+				</ul>
+				<hr>
+
+				<div id="search" class="win">
+					<br>
+					<button type="button" class="btn btn-default btn-sm" id="winUpdateButton1" onclick="getData('KUTLAYTO1')">
+						Update Layton
+					</button>
+					<button type="button" class="btn btn-default btn-sm" id="locationButton" onclick="getLocation()">
+						Get Local
+					</button>
+					<br>
+					<br>
+					Get Data for a US City:
+					<br>
+					<input id="city" type="text"size="20" name="City">
+
+					<select id="state" class="form-control" name="State" style="width:5em; display:inline-block;">
+						<option >AL</option>
+						<option >AK</option>
+						<option >AZ</option>
+						<option >AR</option>
+						<option >CA</option>
+						<option >CO</option>
+						<option >CT</option>
+						<option >DE</option>
+						<option >FL</option>
+						<option >GA</option>
+						<option >HI</option>
+						<option >ID</option>
+						<option >IL</option>
+						<option >IN</option>
+						<option >IA</option>
+						<option >KS</option>
+						<option >KY</option>
+						<option >LA</option>
+						<option >ME</option>
+						<option >MD</option>
+						<option >MA</option>
+						<option >MI</option>
+						<option >MN</option>
+						<option >MS</option>
+						<option >MO</option>
+						<option >MT</option>
+						<option >NE</option>
+						<option >NV</option>
+						<option >NH</option>
+						<option >NJ</option>
+						<option >NM</option>
+						<option >NY</option>
+						<option >NC</option>
+						<option >ND</option>
+						<option >OH</option>
+						<option >OK</option>
+						<option >OR</option>
+						<option >PA</option>
+						<option >RI</option>
+						<option >SC</option>
+						<option >SD</option>
+						<option >TN</option>
+						<option >TX</option>
+						<option selected>UT</option>
+						<option >VT</option>
+						<option >VA</option>
+						<option >WA</option>
+						<option >WV</option>
+						<option >WI</option>
+						<option >WY</option>
+					</select>
+					<br>
+					<button type="button" class="btn btn-info btn-sm" id="locateButton" onclick="cityState()">
+						Submit
+					</button>
+				</div>
+				<div id="weather" class="win">
+					<p>
+						Conduct a search to get current weather conditions.
+					</p>
+				</div>
+				<div id="alerts" class="win">
+					<p>
+						In the event of severe or dangerous weather alerts that have been issued for the search area, the results will populate here.
+					</p>
+				</div>
+				<div id="forecast" class="win">
+					<p>
+						Forecast of the next week.
+					</p>
+
+				</div>
+				<div id="hourly" class="win">
+					<p>
+						A graph of hourly temperature changes over the next 24 hours will appear here.
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

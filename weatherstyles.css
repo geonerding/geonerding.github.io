@@ -1,0 +1,111 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:700|Exo+2:300,600);
+
+/* Solarized Palette - http://ethanschoonover.com/solarized ---------
+ lightgray      : #819090;
+ gray           : #708284;
+ mediumgray     : #536870;
+ darkgray       : #475B62;
+ darkblue       : #0A2933;
+ darkerblue     : #042029;
+ paleryellow    : #FCF4DC;
+ paleyellow     : #EAE3CB;
+ yellow         : #A57706;
+ orange         : #BD3613;
+ red            : #D11C24;
+ pink           : #C61C6F;
+ purple         : #595AB7;
+ blue           : #2176C7;
+ cyan           : #259286;
+ green          : #738A05;
+ */
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0
+}
+
+hr {
+	color:#819090;
+}
+
+html, body {
+	font-family: "Exo 2";
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	overflow: auto;
+	background:#042029;
+}
+
+input[type=text] {
+   border-radius:5px;
+   color:grey;
+}
+
+#header {
+	background-color:#536870;
+	height:2.2em;
+}
+
+#loading {
+	position: absolute;
+	top:10px;
+	left:200px;
+	z-index:10;
+}
+
+#wind {
+	z-index:100;
+}
+
+#mainWindow {
+	width: 98%;
+	height: 100%;
+	border: 0;
+	padding: 5px;
+	margin: auto;
+	color: white;
+    overflow:auto;
+}
+
+#parentContainer {
+	width: 100%;
+	height: 96%;
+}
+
+#hourly {
+	/* background:#819090; */
+}
+
+/* Line graph styles */
+.axis path, .axis line {
+		fill: none;
+		stroke: white;
+		shape-rendering: crispEdges;
+		color:white;
+	}
+
+	.x.axis path {
+		display: none;
+	}
+
+	.line {
+		fill: none;
+		stroke: #2176C7;
+		stroke-width: 1.5px;
+	}
+	
+	.line2 {
+		fill: none;
+		stroke: #D11C24;
+		stroke-width: 1.5px;
+	}
+	
+	.text {
+		fill: white;
+	}
+
