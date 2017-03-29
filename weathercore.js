@@ -309,7 +309,7 @@ function getAstro(city, state) {
 }
 
 function getForecast(lat, lon) {
-	var urlSend = ("https://api.darksky.net/forecast/5a5d01b70294b9738a1af6ddb9451cb7/f478a269867c5f9ce580020d86e6c409/" + lat + "," + lon);
+	var urlSend = ("https://api.darksky.net/forecast/5a5d01b70294b9738a1af6ddb9451cb7/" + lat + "," + lon);
 	console.log(urlSend);
 	var x = $('#forecast');
 	var a = $('#alerts');
