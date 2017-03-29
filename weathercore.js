@@ -16,7 +16,7 @@ function showPosition(position) {
 	console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
 
 	$.ajax({
-		url : " http://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude.toFixed(6) + "," + position.coords.longitude.toFixed(6) + "&sensor=true",
+		url : " https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude.toFixed(6) + "," + position.coords.longitude.toFixed(6) + "&sensor=true",
 		dataType : "json",
 		crossDomain : true,
 		success : function(parsed_json) {
