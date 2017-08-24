@@ -16,6 +16,7 @@ function getVal( name, url ) {
 }
 
 function popHead() {
-	var streetName = getEm(street, webby);
-	document.getElementById('head').innerHTML = "Analysis for " + streetName;
+	var streetName = getVal(street, webby);
+	var objID = getVal(obj, webby);
+	document.getElementById('head').innerHTML = "Analysis for " + streetName + " segment from OBJECTID " + objID;
 }
