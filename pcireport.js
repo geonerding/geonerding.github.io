@@ -1,6 +1,6 @@
 // Get url as variable
 var webby = window.location.href;
-
+var name = "str";
 
 function gup( name, url ) {
     if (!url) url = location.href;
