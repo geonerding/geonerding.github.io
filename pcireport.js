@@ -1,6 +1,6 @@
 // Get url as variable
 var webby = window.location.href;
-var name = "str";
+var street = "str";
 var obj = "obj";
 var length = "length";
 var width = "width";
@@ -15,16 +15,7 @@ function getVal( name, url ) {
     return results == null ? null : results[1];
 }
 
-function getEm( name ) {
-    if (!webby) webby = location.href;
-    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-    var regexS = "[\\?&]"+name+"=([^&#]*)";
-    var regex = new RegExp( regexS );
-    var results = regex.exec( webby );
-    return results == null ? null : results[1];
-}
-
 function popHead() {
-	var streetName = getEm(name);
-	document.getElementById('head').innerHTML = streetName;
+	var streetName = getEm(street, webby);
+	document.getElementById('head').innerHTML = "Analysis for " + streetName;
 }
