@@ -61,8 +61,8 @@ function getFullLength() {
 }
 
 window.onload = function popHead() {
-	var streetName = getVal(street, webby);
-	streetName = streetName.replace('%20', ' ');
+	var streetName = getVal(street, webby).replace(/%20/g, ' ');
+	//streetName = streetName.replace('%20', ' ');
 	var objID = getVal(obj, webby);
 	
 	var streetCondition = getVal(condition, webby);
