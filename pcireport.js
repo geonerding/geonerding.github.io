@@ -15,8 +15,61 @@ function getVal( name, url ) {
     return results == null ? null : results[1];
 }
 
-function popHead() {
+function getFullLength() {
 	var streetName = getVal(street, webby);
-	var objID = getVal(obj, webby);
-	document.getElementById('head').innerHTML = "Analysis for " + streetName + " segment from OBJECTID " + objID;
+	var streetLen = getVal(length, webby);
+	var streetWidth = getVal(width, webby);
+	streetName = streetName.replace('%20', ' ');
+	var request = new XMLHttpRequest();
+
+	request.open('GET', 'https://services6.arcgis.com/zYQ9VrABTTAgjneA/arcgis/rest/services/PCI_2017/FeatureServer/0/query?where=FULLNAME+%3D+%27' + streetName + '%27&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnHiddenFields=false&returnGeometry=false&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnDistinctValues=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&quantizationParameters=&sqlFormat=none&f=pjson&token=Tkr0us_7-dloGJyDDPrm6-UMiFtPMgqVGsvtPq-AGEv1GAlybm36NmfajQAGk52yW-QhtYEoM3AAZ5iR1kxcu2Lf2EZygYpK9IDZGQDCDflVld1S7dwb37dAYoGaxBOSI8yOzs6YzPH7NbRvFR4ZzkqBu7WQK57Dy0xXmwBcsr-2A13hYM2Y8EfBu8gChcf2FCm0-keaBy8dEyAVesw-Hq8pEvB7aAW5U-CVJYqIKXryVrygMVMHi75YdlWYz79o')
+	request.onreadystatechange = function() {
+        if ((request.readyState === 4) && (request.status === 200)) {
+            var items = JSON.parse(request.responseText);
+            console.log(items);
+            var lengthData = [];
+
+            for (var i = 0; i < items['features'].length; i++) {
+                lengthData.push(items['features'][i]['attributes']['Length']);
+            }
+            var sum = 0;
+            for(var ii in lengthData) {
+            	sum += lengthData[ii]; 
+        	}
+
+            var widthData = [];
+            for (var aa = 0; aa < items['features'].length; aa++) {
+                widthData.push(items['features'][aa]['attributes']['Pave_Width']);
+            }
+
+            var sum2 = 0;
+            for(var iii in widthData) {
+            	sum2 += widthData[iii]; 
+        	}
+        	widthAve = sum2 / widthData.length;
+
+            //Add data to street div
+            document.getElementById('street').innerHTML = '<br><br>Length of segment: ' + parseFloat(streetLen).toFixed(2) + " ft<br>" + 'Length of entire street in area: ' + parseFloat(sum).toFixed(2) + " ft<br>" + 'Width of segment: ' + parseFloat(streetWidth).toFixed(2) + " ft<br>" + "Average width of entire street in area: " + parseFloat(widthAve).toFixed(2) + " ft<br>";
+
+
+
+
+
+        }
+    }
+    request.send();
 }
+
+window.onload = function popHead() {
+	var streetName = getVal(street, webby);
+	streetName = streetName.replace('%20', ' ');
+	var objID = getVal(obj, webby);
+	
+	var streetCondition = getVal(condition, webby);
+
+
+	document.getElementById('head').innerHTML = "Analysis for " + streetName + " segment from OBJECTID " + objID;
+	getFullLength();
+	
+}
+
