@@ -46,14 +46,21 @@ function getFullLength() {
             for(var iii in widthData) {
             	sum2 += widthData[iii]; 
         	}
-        	widthAve = sum2 / widthData.length;
+        	var widthAve = sum2 / widthData.length;
 
             //Add data to street div
-            document.getElementById('street').innerHTML = '<br><br>Length of segment: ' + parseFloat(streetLen).toFixed(2) + " ft<br>" + 'Length of entire street in area: ' + parseFloat(sum).toFixed(2) + " ft<br>" + 'Width of segment: ' + parseFloat(streetWidth).toFixed(2) + " ft<br>" + "Average width of entire street in area: " + parseFloat(widthAve).toFixed(2) + " ft<br>";
+            document.getElementById('street').innerHTML = 'Length of segment: ' + parseFloat(streetLen).toFixed(2) + " ft<br>" + 'Length of entire street in area: ' + parseFloat(sum).toFixed(2) + " ft<br>" + 'Width of segment: ' + parseFloat(streetWidth).toFixed(2) + " ft<br>" + "Average width of entire street in area: " + parseFloat(widthAve).toFixed(2) + " ft<br>";
 
-
-
-
+            var condData = [];
+            for (var bb = 0; bb < items['features'].length; bb++) {
+                condData.push(items['features'][bb]['attributes']['Condition']);
+            }
+            var sum3 = 0;
+            for(var cc in condData) {
+                sum3 += condData[cc]; 
+            }
+            var condAve = sum3 / condData.length;
+            document.getElementById('costs').innerHTML = '<br>Average condition of entire street in area: ' + parseFloat(condAve).toFixed(2) + "<br>";
 
         }
     }
@@ -62,13 +69,14 @@ function getFullLength() {
 
 window.onload = function popHead() {
 	var streetName = getVal(street, webby).replace(/%20/g, ' ');
-	//streetName = streetName.replace('%20', ' ');
+    var cond = getVal(condition, webby);
 	var objID = getVal(obj, webby);
 	
 	var streetCondition = getVal(condition, webby);
 
 
-	document.getElementById('head').innerHTML = "Analysis for " + streetName + " segment from OBJECTID " + objID;
+	document.getElementById('head').innerHTML = "<h2>Analysis for " + streetName + " segment from OBJECTID " + objID + "</h2>";
+    document.getElementById('condition').innerHTML = "<h3>Condition: " + cond + "</h3>";
 	getFullLength();
 	
 }
