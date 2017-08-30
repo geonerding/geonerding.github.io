@@ -19,6 +19,10 @@ function getFullLength() {
 	var streetName = getVal(street, webby);
 	var streetLen = getVal(length, webby);
 	var streetWidth = getVal(width, webby);
+    var cond = getVal(condition, webby);
+    if (cond == 0) {
+        cond = 1;
+    }
 	streetName = streetName.replace('%20', ' ');
 	var request = new XMLHttpRequest();
 
@@ -60,7 +64,9 @@ function getFullLength() {
                 sum3 += condData[cc]; 
             }
             var condAve = sum3 / condData.length;
-            document.getElementById('costs').innerHTML = '<br>Average condition of entire street in area: ' + parseFloat(condAve).toFixed(2) + "<br>";
+            var segCost = streetLen * streetWidth * (1/cond) * 5;
+            var streetCost = sum * widthAve * (1/cond) * 5;
+            document.getElementById('costs').innerHTML = '<br>Average condition of entire street in area: ' + parseFloat(condAve).toFixed(0) + "<br>Cost to update street segment: $" + parseFloat(segCost).toFixed(2) + "<br>Cost to update entire street in area: $" + parseFloat(streetCost).toFixed(2);
 
         }
     }
