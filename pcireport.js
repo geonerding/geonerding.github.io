@@ -26,7 +26,7 @@ function getFullLength() {
 	streetName = streetName.replace('%20', ' ');
 	var request = new XMLHttpRequest();
 
-	request.open('GET', 'https://services6.arcgis.com/zYQ9VrABTTAgjneA/ArcGIS/rest/services/Roads/FeatureServer/0/query?where=FULLNAME+%3D+%27' + streetName + '%27&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnHiddenFields=false&returnGeometry=false&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnDistinctValues=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&quantizationParameters=&sqlFormat=none&f=pjson&token=qG8oSdsg1Pi6pBN1-pVYzxGfKcRBJbyAqd3v3pMdf6Zi1LbrYK-eWst-j7dzLI1PJE4ybD7-4PE0iUpFNjmWfE1bD7geC5yrUhiV4iXUs2eFEgo-akAHcF6nmNQb0NYepQUdzCTY4UFyekRMmo6M_j_9TqrYuF-yidvvJXZfJ_O9lJFWiNj7K4wl8TxPBqtK8tCNM6Ym7qVWcrVZbKnu9UDkhkAp4lKDMU_fwhxCi1X3dkquQ5N1ibwM5wyl4r_f')
+	request.open('GET', 'https://services6.arcgis.com/zYQ9VrABTTAgjneA/ArcGIS/rest/services/Roads/FeatureServer/0/query?where=FULLNAME+%3D+%27' + streetName + '%27&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnHiddenFields=false&returnGeometry=false&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnDistinctValues=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&quantizationParameters=&sqlFormat=none&f=pjson&token=Wmm_l_7wSt5FOlGwyyMn0CzmebEjvQWsHvEPkxcvmygKIotm59zhPts5Uzo2gj8Wm9CGpbgaqBlq8ELPpn6Fj48nQLHtsIr5KeiQ8Gh8iNrczykxWDFUr-F7xf1Z6_Rwpdu_hpvGdRBvA8lrgDDP40QTbj3MrMVMw8OYdBpyW9C7zbY5dDu_px638qwjGg-44rqz5mUzRyPfth5Xpw6pZKiRs5qwBUJY8howewq7rLop_EtDSUdXKwqOBfg6aDC8')
 	request.onreadystatechange = function() {
         if ((request.readyState === 4) && (request.status === 200)) {
             var items = JSON.parse(request.responseText);
@@ -38,7 +38,7 @@ function getFullLength() {
             }
             var sum = 0;
             for(var ii in lengthData) {
-            	sum += lengthData[ii]; 
+            	sum += lengthData[ii];
         	}
 
             var widthData = [];
@@ -48,7 +48,7 @@ function getFullLength() {
 
             var sum2 = 0;
             for(var iii in widthData) {
-            	sum2 += widthData[iii]; 
+            	sum2 += widthData[iii];
         	}
         	var widthAve = sum2 / widthData.length;
 
@@ -61,7 +61,7 @@ function getFullLength() {
             }
             var sum3 = 0;
             for(var cc in condData) {
-                sum3 += condData[cc]; 
+                sum3 += condData[cc];
             }
             var condAve = sum3 / condData.length;
             var segCost = streetLen * streetWidth * (1/cond) * 5;
@@ -77,13 +77,12 @@ window.onload = function popHead() {
 	var streetName = getVal(street, webby).replace(/%20/g, ' ');
     var cond = getVal(condition, webby);
 	var objID = getVal(obj, webby);
-	
+
 	var streetCondition = getVal(condition, webby);
 
 
 	document.getElementById('head').innerHTML = "<h2>Analysis for " + streetName + " segment from OBJECTID " + objID + "</h2>";
     document.getElementById('condition').innerHTML = "<h3>Condition: " + cond + "</h3>";
 	getFullLength();
-	
-}
 
+}
